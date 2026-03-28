@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Страшный скример</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: sans-serif;
+      color: red;
+      text-align: center;
+    }
+
+    #warningText {
+      font-size: 3em;
+    }
+
+    #scareImage {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 400px;
+      height: 400px;
+      transform: translate(-50%, -50%);
+      display: none;
+      animation: shake 0.3s infinite;
+    }
+
+    #scareText {
+      position: absolute;
+      top: 80%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 3em;
+      display: none;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(-50%, -50%) translate(0,0); }
+      25% { transform: translate(-50%, -50%) translate(15px,0); }
+      50% { transform: translate(-50%, -50%) translate(-15px,0); }
+      75% { transform: translate(-50%, -50%) translate(15px,0); }
+      100% { transform: translate(-50%, -50%) translate(0,0); }
+    }
+  </style>
+</head>
+<body>
+  <div id="warningText">Зря ты зашёл!</div>
+
+  <!-- Страшная картинка -->
+  <img id="scareImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAYAAADy3MiRAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAlwSFlzAAALEwAACxMBAJqcGAAABf5JREFUeF7t3cFtgzAQgOGZb4//9TqKAhD+5swCVH6UvkVvTN7NhrfK/izMJAAAAAAAAAAAAAAAAAADw1HfHn2/aHXl2f2x83Po5+fZ+/xZ95vN9f3Uu0rW9d+fm/W77bXffY4mWPvXXuT3z17a9+8GHb+vu65XbcLybpc6p7XOvj/z0lY8sLZ+7e+7XH+FpfH7u0/XI+7a3+H2rjq3JfXkF/ub8/l/rNq6Z2p93fG5jJta6ZrJbfH+r+o/J4PqX3+2v7kfl7vP6nqf5f5nq/j+r5X6foAAAAAAAAAAAAAAAAAAAAAADAxZcAau0r8CqVZ3qzMS3EAAAAASUVORK5CYII=" alt="Страшная картинка">
+
+  <!-- Текст после испуга -->
+  <div id="scareText">Ты испугался!</div>
+
+  <!-- Звук крика -->
+  <audio id="screamSound">
+    <source src="data:audio/mpeg;base64,//uQxAAAAAAAAAAAAAAAAAAAAAA..." type="audio/mpeg">
+  </audio>
+
+  <script>
+    const warningText = document.getElementById('warningText');
+    const img = document.getElementById('scareImage');
+    const scareText = document.getElementById('scareText');
+    const audio = document.getElementById('screamSound');
+
+    setTimeout(() => {
+      warningText.style.display = 'none';
+      img.style.display = 'block';
+      scareText.style.display = 'block';
+      audio.play().catch(err => console.log(err));
+    }, 5000); // через 5 секунд
+  </script>
+</body>
+</html>
